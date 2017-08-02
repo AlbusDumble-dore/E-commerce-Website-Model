@@ -4,6 +4,7 @@ var csrf = require('csurf');
 var csrfProtection = csrf();
 var passport = require('passport');
 var Product = require('../models/products');
+var Cart = require('../models/cart');
 
 router.use( csrfProtection);
 
@@ -23,18 +24,19 @@ router.get('/', function(req, res, next) {
       
   });
 });
-router.get('/user/signup',function (req,res,next) {
-  res.render('user/signup',{csrfToken: req.csrfToken});
-    
-});
-router.post('/user/signup',passport.authenticate('local-signup',{
-  successRedirect: '/profile',
-    failureRedirect : '/signup',
-    failureFlash : true
-}));
 
-router.get('/user/profile',function (req,res,next) {
-    res.render('user/profile');
+router.get('/add-to-cart:id/',function (res,req,next) {
+    var productId = req.params.id;
+    var cart = new Cart(req.session.cart?req.session.cart : {});                   // if already cart is present then pass cart else empty cart
+    Product.findById(productId,function (err,product) {
+        if(err) return res.redirect('/');
+        cart.add(product,product.id())
+        req.session.cart  = cart;
+        res.redirect('/');
+    });
+
+
 });
+
 
 module.exports = router;
