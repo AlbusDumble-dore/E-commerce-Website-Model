@@ -3,7 +3,7 @@
  */
 
 
-moduke.exports = function Cart(oldCart) {
+module.exports = function Cart(oldCart) {
   this.items = oldCart.items||{};
   this.totalQuantity = oldCart.totalQuantity||0;
   this.totalPrice = oldCart.totalPrice||0;
