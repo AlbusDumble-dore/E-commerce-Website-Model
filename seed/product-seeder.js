@@ -24,7 +24,7 @@ var products =[ new Product({
 
     }),
     new Product({
-        imagePath:'https://media.decathlon.in/115968/ft720-indoor-table-tennis-table-blue.jpg',
+        imagePath:'http://webappstech.com/Templates/buildindia/converted/images/tablet1.png',
         title:' TT table',
         description:'Smooth, easy to move and stable.',
         price:'50'
