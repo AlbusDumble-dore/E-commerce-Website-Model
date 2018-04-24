@@ -2,7 +2,7 @@
  * Created by albusdumble-dore on 1/8/17.
  */
 
-var Product = require('../models/products');
+var Product = require('../models/product');
 var mongoose = require('mongoose');
 
 mongoose.connect('localhost:27017/shopping');
